@@ -1,0 +1,28 @@
+[workspace]
+resolver = "2"
+members = [
+    "candle",
+    "neopixel",
+]
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Christopher Liebman <liebman@zod.com>"]
+edition = "2021"
+
+
+[workspace.dependencies]
+anyhow = { version = "1" }
+rand = { version = "0.8.5", features = ["std_rng"] }
+
+esp-idf-hal = { version = "0.39", git = "https://github.com/esp-rs/esp-idf-hal" , features = ["edge-executor", "embassy-sync", "critical-section"] }
+esp-idf-sys = { version = "0.31.10", features = ["binstart"] }
+neopixel = { path = "./neopixel" }
+
+[profile.release]
+opt-level = "s"
+
+[profile.dev]
+debug = true
+opt-level = "z"
+
